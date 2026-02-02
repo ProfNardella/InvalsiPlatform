@@ -99,5 +99,77 @@ function correggi() {
 
 
 function scaricaPDF() {
-  alert("PDF OK");
+
+  // Controllo semplice: se mobile, avviso
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    alert("Il riepilogo PDF è disponibile da computer.");
+    return;
+  }
+
+  fetch("./data/invalsi1.json")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (domande) {
+
+      var jsPDF = window.jspdf.jsPDF;
+      var doc = new jsPDF();
+
+      var y = 15;
+      var punteggio = 0;
+
+      doc.setFontSize(16);
+      doc.text("Riepilogo prova INVALSI", 10, y);
+      y += 10;
+
+      doc.setFontSize(10);
+      doc.text("Data: " + new Date().toLocaleString(), 10, y);
+      y += 10;
+
+      for (var i = 0; i < domande.length; i++) {
+
+        var risposta = document.querySelector(
+          'input[name="q' + i + '"]:checked'
+        );
+
+        doc.setFontSize(11);
+        doc.text((i + 1) + ". " + (domande[i].quesito || domande[i].testo), 10, y);
+        y += 7;
+
+        for (var j = 0; j < domande[i].opzioni.length; j++) {
+          var testo = "- " + domande[i].opzioni[j];
+
+          if (j === domande[i].corretta) {
+            testo += " (corretta)";
+          }
+
+          if (risposta && j === parseInt(risposta.value, 10)) {
+            testo += "  <-- risposta data";
+            if (j === domande[i].corretta) {
+              punteggio++;
+            }
+          }
+
+          doc.setFontSize(10);
+          doc.text(testo, 12, y);
+          y += 6;
+
+          if (y > 270) {
+            doc.addPage();
+            y = 15;
+          }
+        }
+
+        y += 4;
+      }
+
+      doc.setFontSize(12);
+      doc.text(
+        "Punteggio finale: " + punteggio + " / " + domande.length,
+        10,
+        y + 5
+      );
+
+      doc.save("riepilogo_invalsi.pdf");
+    });
 }
