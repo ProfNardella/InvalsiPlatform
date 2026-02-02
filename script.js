@@ -41,6 +41,13 @@ fetch("./data/invalsi1.json")
 
 // FUNZIONI GLOBALI
 function correggi() {
+
+  // 🔓 SBLOCCA SUBITO IL BOTTONE PDF (robusto, non asincrono)
+  var pdfBtn = document.getElementById("pdfBtn");
+  if (pdfBtn) {
+    pdfBtn.disabled = false;
+  }
+
   fetch("./data/invalsi1.json")
     .then(function (response) {
       return response.json();
@@ -63,23 +70,29 @@ function correggi() {
           var label = opzioni[j].parentElement;
 
           // pulizia classi precedenti
-          label.classList.remove("opzione-corretta", "opzione-sbagliata");
+          label.classList.remove("opzione-corretta");
+          label.classList.remove("opzione-sbagliata");
 
-          // evidenzia corretta
+          // evidenzia risposta corretta
           if (j === domande[i].corretta) {
             label.classList.add("opzione-corretta");
           }
 
-          // evidenzia sbagliata selezionata
-          if (rispostaSelezionata &&
-              j === parseInt(rispostaSelezionata.value, 10) &&
-              j !== domande[i].corretta) {
+          // evidenzia risposta sbagliata selezionata
+          if (
+            rispostaSelezionata &&
+            j === parseInt(rispostaSelezionata.value, 10) &&
+            j !== domande[i].corretta
+          ) {
             label.classList.add("opzione-sbagliata");
           }
         }
 
-        if (rispostaSelezionata &&
-            parseInt(rispostaSelezionata.value, 10) === domande[i].corretta) {
+        // calcolo punteggio
+        if (
+          rispostaSelezionata &&
+          parseInt(rispostaSelezionata.value, 10) === domande[i].corretta
+        ) {
           punteggio++;
         }
       }
@@ -91,13 +104,16 @@ function correggi() {
         risultato.id = "risultato";
         document.body.appendChild(risultato);
       }
+
       risultato.className = "risultato";
       risultato.innerText =
         "Risposte corrette: " + punteggio + " su " + domande.length;
-      document.getElementById("pdfBtn").disabled = false;
+    })
+    .catch(function (errore) {
+      console.error("Errore durante la correzione:", errore);
     });
-
 }
+
 
 
 function scaricaPDF() {
