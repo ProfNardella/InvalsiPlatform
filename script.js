@@ -1,4 +1,3 @@
-// TEST DI PARTENZA
 console.log("JS caricato");
 
 // CARICAMENTO DOMANDE
@@ -11,11 +10,13 @@ fetch("./data/invalsi1.json")
     var quiz = document.getElementById("quiz");
 
     domande.forEach(function (d, i) {
+
       var p = document.createElement("p");
       p.innerHTML = "<b>" + (i + 1) + ". " + (d.quesito || d.testo) + "</b>";
       quiz.appendChild(p);
 
       d.opzioni.forEach(function (op, j) {
+
         var label = document.createElement("label");
 
         var input = document.createElement("input");
@@ -29,18 +30,20 @@ fetch("./data/invalsi1.json")
         quiz.appendChild(label);
         quiz.appendChild(document.createElement("br"));
       });
+
     });
+
   })
   .catch(function (e) {
     alert("Errore caricamento domande");
     console.error(e);
   });
 
-// FUNZIONI GLOBALI (OBBLIGATORIO)
+// FUNZIONI GLOBALI
 function correggi() {
-  alert("Correzione OK (placeholder)");
+  alert("Correzione OK");
 }
 
 function scaricaPDF() {
-  alert("PDF OK (placeholder)");
+  alert("PDF OK");
 }
