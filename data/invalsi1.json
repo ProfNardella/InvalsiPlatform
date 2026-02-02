@@ -1,1 +1,17 @@
+[
+  {
+    "id": 1,
+    "testo": "Quanti sono i pazienti vaccinati?",
+    "opzioni": ["400", "500", "600"],
+    "corretta": 1,
+    "materia": "matematica"
+  },
+  {
+    "id": 2,
+    "testo": "L’80% dei vaccinati non ha avuto l’influenza. Quanti sono?",
+    "opzioni": ["300", "400", "500"],
+    "corretta": 1,
+    "materia": "informatica"
+  }
+]
 
