@@ -1,4 +1,4 @@
-wwindow.onload = function () {
+window.onload = function () {
 
   fetch("./data/invalsi1.json")
     .then(function (response) {
