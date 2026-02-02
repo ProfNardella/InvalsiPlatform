@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "testo": "Domanda di test con immagine.\nSeconda riga.",
+    "contesto": " Un gruppo di amici..",
+    "domanda": " Definisci qual è il gruppo che spende di meno.\nPerchè?.",
     "immagine": "img/Esercizio1.png",
     "opzioni": ["400", "500", "600"],
     "corretta": 1,
