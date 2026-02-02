@@ -114,8 +114,8 @@ function scaricaPDF() {
     .then(response => response.json())
     .then(domande => {
 
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+      var jsPDF = window.jspdf.jsPDF;
+      var doc = new jsPDF();
 
       let y = 10;
       let punteggio = 0;
@@ -129,7 +129,7 @@ function scaricaPDF() {
       y += 10;
 
       domande.forEach((domanda, i) => {
-        const risposta = document.querySelector(
+        var risposta = document.querySelector(
           'input[name="q' + i + '"]:checked'
         );
 
