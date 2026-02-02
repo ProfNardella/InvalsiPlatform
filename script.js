@@ -109,3 +109,68 @@ function correggi() {
     });
 }
 
+function scaricaPDF() {
+  fetch("./data/invalsi1.json")
+    .then(response => response.json())
+    .then(domande => {
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      let y = 10;
+      let punteggio = 0;
+
+      doc.setFontSize(14);
+      doc.text("Riepilogo prova INVALSI", 10, y);
+      y += 10;
+
+      doc.setFontSize(10);
+      doc.text("Data: " + new Date().toLocaleString(), 10, y);
+      y += 10;
+
+      domande.forEach((domanda, i) => {
+        const risposta = document.querySelector(
+          'input[name="q' + i + '"]:checked'
+        );
+
+        doc.setFontSize(11);
+        doc.text((i + 1) + ". " + (domanda.quesito || domanda.testo), 10, y);
+        y += 7;
+
+        domanda.opzioni.forEach((opzione, j) => {
+          let testo = "- " + opzione;
+
+          if (j === domanda.corretta) {
+            testo += "  (corretta)";
+          }
+
+          if (risposta && j === parseInt(risposta.value)) {
+            testo += "  <-- risposta data";
+            if (j === domanda.corretta) punteggio++;
+          }
+
+          doc.setFontSize(10);
+          doc.text(testo, 12, y);
+          y += 6;
+        });
+
+        y += 4;
+
+        if (y > 270) {
+          doc.addPage();
+          y = 10;
+        }
+      });
+
+      doc.setFontSize(12);
+      doc.text(
+        "Punteggio finale: " + punteggio + " / " + domande.length,
+        10,
+        y + 10
+      );
+
+      doc.save("riepilogo_invalsi.pdf");
+    });
+}
+
+
