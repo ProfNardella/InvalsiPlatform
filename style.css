@@ -1,5 +1,9 @@
 body {
-  font-family: Arial, Arial, sans-serif;
+  body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Arial, sans-serif;
+}
+
 }
 /* Box del contesto */
 .contesto {
