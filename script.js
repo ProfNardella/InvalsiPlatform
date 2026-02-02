@@ -1,19 +1,19 @@
+fetch("./data/invalsi1.json")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (domande) {
+    var quizDiv = document.getElementById("quiz");
 
-fetch("data/invalsi1.json")
-  .then(response => response.json())
-  .then(domande => {
-    const quizDiv = document.getElementById("quiz");
+    domande.forEach(function (domanda, index) {
+      var html = "<p><strong>" + (index + 1) + ". " + domanda.testo + "</strong></p>";
 
-    domande.forEach((domanda, index) => {
-      let html = `<p><strong>${index + 1}. ${domanda.testo}</strong></p>`;
-
-      domanda.opzioni.forEach((opzione, i) => {
-        html += `
-          <label>
-            <input type="radio" name="q${index}" value="${i}">
-            ${opzione}
-          </label><br>
-        `;
+      domanda.opzioni.forEach(function (opzione, i) {
+        html +=
+          '<label>' +
+          '<input type="radio" name="q' + index + '" value="' + i + '">' +
+          opzione +
+          "</label><br>";
       });
 
       quizDiv.innerHTML += html;
@@ -21,14 +21,16 @@ fetch("data/invalsi1.json")
   });
 
 function correggi() {
-  fetch("data/invalsi1.json")
-    .then(response => response.json())
-    .then(domande => {
-      let punteggio = 0;
+  fetch("./data/invalsi1.json")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (domande) {
+      var punteggio = 0;
 
-      domande.forEach((domanda, index) => {
-        const risposta = document.querySelector(
-          \`input[name="q${index}"]:checked\`
+      domande.forEach(function (domanda, index) {
+        var risposta = document.querySelector(
+          'input[name="q' + index + '"]:checked'
         );
 
         if (risposta && parseInt(risposta.value) === domanda.corretta) {
@@ -37,6 +39,6 @@ function correggi() {
       });
 
       document.getElementById("risultato").innerText =
-        \`Risultato: ${punteggio} / ${domande.length}\`;
+        "Risultato: " + punteggio + " / " + domande.length;
     });
 }
