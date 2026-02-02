@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Piattaforma INVALSI</title>
- <link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="./style.css">
+
+
 
 </head>
 <body>
@@ -16,7 +18,12 @@
 
 <p id="risultato"></p>
 
-<script src="script.js?v=1"></script>
+<script src="./script.js"></script>
+<script>
+  const version = new Date().getTime();
+  document.querySelector('link[href="./style.css"]').href = "./style.css?v=" + version;
+  document.querySelector('script[src="./script.js"]').src = "./script.js?v=" + version;
+</script>
 
 </body>
 </html>
