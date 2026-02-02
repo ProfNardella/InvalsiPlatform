@@ -10,7 +10,20 @@ fetch("./data/invalsi1.json")
       var domanda = domande[i];
 
       var p = document.createElement("p");
-      p.innerHTML = "<strong>" + (i + 1) + ". " + domanda.testo + "</strong>";
+      
+      // CONTEXTO (se esiste)
+if (domanda.contesto) {
+  var contesto = document.createElement("p");
+  contesto.innerText = domanda.contesto;
+  contesto.style.whiteSpace = "pre-line";
+  quizDiv.appendChild(contesto);
+}
+
+// QUESITO
+var quesito = document.createElement("p");
+quesito.innerHTML = "<strong>" + (i + 1) + ". " + domanda.quesito + "</strong>";
+quizDiv.appendChild(quesito);
+
       quizDiv.appendChild(p);
       
       if (domanda.immagine) {
