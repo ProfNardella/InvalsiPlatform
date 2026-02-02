@@ -108,7 +108,7 @@ function correggi() {
         "Risposte corrette: " + punteggio + " su " + domande.length;
     });
 }
-
+}
 function scaricaPDF() {
   fetch("./data/invalsi1.json")
     .then(response => response.json())
@@ -171,6 +171,6 @@ function scaricaPDF() {
 
       doc.save("riepilogo_invalsi.pdf");
     });
-}
+
 
 
