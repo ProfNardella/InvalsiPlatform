@@ -12,6 +12,16 @@ fetch("./data/invalsi1.json")
       var p = document.createElement("p");
       p.innerHTML = "<strong>" + (i + 1) + ". " + domanda.testo + "</strong>";
       quizDiv.appendChild(p);
+      
+      if (domanda.immagine) {
+  var img = document.createElement("img");
+  img.src = domanda.immagine;
+  img.style.maxWidth = "400px";
+  img.style.display = "block";
+  img.style.marginBottom = "10px";
+  quizDiv.appendChild(img);
+}
+
 
       for (var j = 0; j < domanda.opzioni.length; j++) {
         var label = document.createElement("label");
