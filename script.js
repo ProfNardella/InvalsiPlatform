@@ -13,26 +13,28 @@ fetch("./data/invalsi1.json")
       
       // CONTEXTO (se esiste)
 if (domanda.contesto) {
-  var contesto = document.createElement("p");
+  var contesto = document.createElement("div");
+  contesto.className = "contesto";
   contesto.innerText = domanda.contesto;
   contesto.style.whiteSpace = "pre-line";
   quizDiv.appendChild(contesto);
 }
 
+
 // QUESITO
-var quesito = document.createElement("p");
-quesito.innerHTML = "<strong>" + (i + 1) + ". " + domanda.quesito + "</strong>";
+var quesito = document.createElement("div");
+quesito.className = "quesito";
+quesito.innerHTML = (i + 1) + ". " + domanda.quesito;
 quizDiv.appendChild(quesito);
 
-      quizDiv.appendChild(p);
+    
       
       if (domanda.immagine) {
   var img = document.createElement("img");
   img.src = domanda.immagine;
-  img.style.maxWidth = "400px";
-  img.style.display = "block";
-  img.style.marginBottom = "10px";
+  img.className = "immagine-domanda";
   quizDiv.appendChild(img);
+
 }
 
 
