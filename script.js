@@ -95,6 +95,8 @@ function correggi() {
       risultato.innerText =
         "Risposte corrette: " + punteggio + " su " + domande.length;
     });
+  document.getElementById("pdfBtn").disabled = false;
+
 }
 
 
