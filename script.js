@@ -37,6 +37,10 @@ quizDiv.appendChild(quesito);
 
 }
 
+      var opzioniDiv = document.createElement("div");
+opzioniDiv.className = "opzioni";
+quizDiv.appendChild(opzioniDiv);
+
 
       for (var j = 0; j < domanda.opzioni.length; j++) {
         var label = document.createElement("label");
@@ -49,8 +53,10 @@ quizDiv.appendChild(quesito);
         label.appendChild(input);
         label.appendChild(document.createTextNode(" " + domanda.opzioni[j]));
 
-        quizDiv.appendChild(label);
-        quizDiv.appendChild(document.createElement("br"));
+        opzioniDiv.appendChild(label);
+        opzioniDiv.appendChild(document.createElement("br"));
+
+     
       }
     }
   });
