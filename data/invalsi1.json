@@ -3,7 +3,7 @@
     "id": 1,
     "contesto": " Un gruppo di amici..",
     "quesito": " Definisci qual è il gruppo che spende di meno.\nPerchè?.",
-    "immagine": "img/Esercizio1.png",
+    "immagine": "img/Esercizio10.png",
     "opzioni": ["400", "500", "600"],
     "corretta": 1,
     "materia": "matematica"
@@ -12,7 +12,7 @@
     "id": 2,
     "contesto": " Un gruppo di amici..",
     "quesito": " Definisci qual è il gruppo che spende di meno.\nPerchè?.",
-    "immagine": "img/Esercizio1.png",
+    "immagine": "img/Esercizio10.png",
     "opzioni": ["400", "500", "600"],
     "corretta": 2,
     "materia": "matematica"
@@ -21,7 +21,7 @@
     "id": 3,
     "contesto": " Un gruppo di amici..",
     "quesito": " Definisci qual è il gruppo che spende di meno.\nPerchè?.",
-    "immagine": "img/Esercizio1.png",
+    "immagine": "img/Esercizio10.png",
     "opzioni": ["400", "500", "600"],
     "corretta": 2,
     "materia": "matematica"
